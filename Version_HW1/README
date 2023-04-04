@@ -1,0 +1,4 @@
+bin folder stores bin executable files in our case it is hellomake.
+include folder stores header files.
+src folder stores object files in obj folder, makefile and source codes for our project.
+To compile our project you need to run make in src folder. Your executable will be in bin folder.
