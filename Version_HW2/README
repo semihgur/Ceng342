@@ -1,0 +1,6 @@
+bin folder stores bin executable files and reslut.txt.
+include folder stores header files.
+src folder stores object files in obj folder, makefile and source codes for our project.
+To compile our project you need to run make in src folder. Your executable and result will be in bin folder.
+command to run while in src:
+make
