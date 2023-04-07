@@ -45,7 +45,7 @@ int main(int argc, char *argv[])
   std::string filename="../bin/"+std::string(argv[3]);
   printf("\nfilename is: %s\n", filename.c_str());
 
-  // Write matrix to file
+  // Write solution to file
   FILE *fp = fopen(filename.c_str(), "w");
   if (fp == NULL)
   {
