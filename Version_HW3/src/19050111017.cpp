@@ -1,10 +1,10 @@
 #include <hellomake.h>
 #include <stdio.h>
-#include <random>
+#include <stdlib.h>
+#include <string>
 
 int main(int argc, char *argv[])
 {
-  using namespace std;
   // Check if the number of arguments is correct
   if (argc != 4)
   {
@@ -13,34 +13,21 @@ int main(int argc, char *argv[])
   }
 
   // Convert the first two arguments to integers
-  int rows = atoi(argv[1]);
-  int cols = atoi(argv[2]);
+  const int rows = atoi(argv[1]);
+  const int cols = atoi(argv[2]);
 
-  // Allocate memory for the matrix
-  double **matrix = (double **)malloc(rows * sizeof(double *));
-  for (int i = 0; i < rows; i++)
-  {
-    matrix[i] = (double *)malloc(cols * sizeof(double));
-  }
-
-  // setting seed of random number generator
-  srand(111017);
-
-  // filling the matrix with random double values between 1.0- 100.0
-  for (int i = 0; i < rows; i++)
-  {
-    for (int j = 0; j < cols; j++)
-    {
-      matrix[i][j] = (rand() % 10000) / 100.0;
-    }
-  }
+  // creating row * col random matrix
+  double** matrix =randomMatrixCreator(rows, cols);
 
   // creating row * 1 random vector
-  double *vector = (double *)malloc(rows * sizeof(double));
-  for (int i = 0; i < rows; i++)
-  {
-    vector[i] = (rand() % 10000) / 100.0;
-  }
+  double ** vector = randomMatrixCreator(cols, 1);
+
+  //printing the matrix and vector
+  printf("Matrix is:\n");
+  matrixPrinter(matrix, rows, cols);
+
+  printf("Vector is:\n");
+  matrixPrinter(vector, cols, 1);
 
   // Allocate memory for the result vector `solution`
   double *solution = new double[rows];
@@ -51,11 +38,12 @@ int main(int argc, char *argv[])
     solution[i] = 0.0;
     for (int j = 0; j < cols; j++)
     {
-      solution[i] += matrix[i][j] * vector[j];
+      solution[i] += matrix[i][j] * vector[j][0];
     }
   }
 
-  string filename = "../bin/" + string(argv[3]);
+  std::string filename="../bin/"+std::string(argv[3]);
+  printf("\nfilename is: %s\n", filename.c_str());
 
   // Write matrix to file
   FILE *fp = fopen(filename.c_str(), "w");
@@ -82,8 +70,7 @@ int main(int argc, char *argv[])
   }
   free(matrix);
 
-  // call a function in another file
-  myPrintHelloMake();
+  endOfTheProgram();
 
   return (0);
 }

@@ -16,7 +16,7 @@ $(ODIR)/%.o: %.cpp $(DEPS)
 
 19050111017: $(OBJ)
 	$(CC) -o $(EXECDIR)/$@ $^ $(CFLAGS)
-	$(EXECDIR)/19050111017 $(ARGS)
+	$(EXECDIR)/$@ $(ARGS)
 
 .PHONY: clean
 

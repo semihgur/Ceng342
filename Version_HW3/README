@@ -4,3 +4,6 @@ src folder stores object files in obj folder, makefile and source codes for our 
 To compile our project you need to run make in src folder. Your executable and result will be in bin folder.
 command to run while in src:
 make
+to clean bin folder and temp files:
+make clean
+to change matrix and vector lenght go into makefile and change args!!!
