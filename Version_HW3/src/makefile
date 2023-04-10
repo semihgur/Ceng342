@@ -1,7 +1,10 @@
 IDIR =../include
-CC=gcc
-CFLAGS=-I$(IDIR) -lstdc++
-ARGS=5 6 solution.txt
+CC=mpicc
+CFLAGS=-I$(IDIR) -lstdc++ -lmpi_cxx -g -Wall
+ARGS=-n 4
+ARGS_SIZE=1017
+ARGS_FILENAME=Output.txt
+TESTARGS=4
 
 ODIR=obj
 EXECDIR=../bin
@@ -16,7 +19,13 @@ $(ODIR)/%.o: %.cpp $(DEPS)
 
 19050111017: $(OBJ)
 	$(CC) -o $(EXECDIR)/$@ $^ $(CFLAGS)
-	$(EXECDIR)/$@ $(ARGS)
+	mpirun $(ARGS) $(EXECDIR)/$@ $(ARGS_SIZE) $(ARGS_SIZE) $(ARGS_FILENAME)
+
+testcompile: mpiTest.cpp
+	$(CC) $^ -o $(EXECDIR)/$@ $(CFLAGS)
+
+testrun: testcompile
+	mpirun -np $(TESTARGS) $(EXECDIR)/$^
 
 .PHONY: clean
 

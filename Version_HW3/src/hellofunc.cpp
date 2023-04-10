@@ -1,11 +1,13 @@
+//Semih Gür Parallel Programming HW3 19050111017
+
 #include <stdio.h>
 #include <hellomake.h>
 #include <stdlib.h>
 #include <random>
 
-void endOfTheProgram(void) {
+void endOfTheProgram(double time,int num_procs) {
 
-  printf("\n----------------------------------------------------\nProgram executed successfully!!\nCheck the bin folder for the output file.\n");
+  printf("\n----------------------------------------------------\nProgram executed successfully!!\nCheck the bin folder for the output file.\nElapsed time is %.2f milliseconds for parallel mxv with %d processes\n", time, num_procs);
 
   return;
 }
